@@ -1,15 +1,6 @@
-const PARTNERS = [
-  "Microsoft Education",
-  "Pragati Educational Institutions",
-  "Microsoft Teams for Education",
-  "Be10X AI Accelerator",
-  "Microsoft Innovative Educator",
-  "Microsoft 365 Education",
-  "Canva for Education",
-  "NotebookLM",
-  "ChatGPT Edu",
-  "Leila Gharani",
-]
+import { siteData } from "@/lib/site-data"
+
+const PARTNERS = siteData.partners
 
 export function ClientMarquee() {
   return (

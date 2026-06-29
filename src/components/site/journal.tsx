@@ -1,44 +1,7 @@
 import { ArrowUpRight, Clock, BookOpen } from "lucide-react"
+import { siteData } from "@/lib/site-data"
 
-const ARTICLES = [
-  {
-    num: "012",
-    title: "Why ChatGPT won't replace teachers — but it will replace the ones who refuse to use it",
-    excerpt:
-      "A practical argument for why AI literacy is now a baseline professional competency, not an optional one — and how to introduce it to a resistant staff room without losing the sceptics.",
-    category: "AI in Education",
-    date: "Jun 2026",
-    readTime: "6 min read",
-    featured: true,
-  },
-  {
-    num: "011",
-    title: "The NotebookLM workflow I teach every teacher",
-    excerpt:
-      "Step-by-step: how to turn your syllabus, textbook, and lesson notes into a study companion students actually use — and the four mistakes to avoid.",
-    category: "Tools",
-    date: "May 2026",
-    readTime: "9 min read",
-  },
-  {
-    num: "010",
-    title: "On teacher burnout: a letter to school management",
-    excerpt:
-      "Adapted from The Exhausted Educator. What school boards get wrong about teacher wellness, and three structural changes that cost nothing.",
-    category: "Wellness",
-    date: "Apr 2026",
-    readTime: "7 min read",
-  },
-  {
-    num: "009",
-    title: "Microsoft Teams for Education: a setup that actually works",
-    excerpt:
-      "The default Teams deployment is a mess. After rolling it out across 10,000+ students, here's the structure I recommend — and the three settings most schools forget.",
-    category: "Microsoft 365",
-    date: "Mar 2026",
-    readTime: "12 min read",
-  },
-]
+const { kicker, headline, headlineAccent, viewAllLabel, articles: ARTICLES, newsletter } = siteData.journal
 
 export function Journal() {
   const [featured, ...rest] = ARTICLES
@@ -54,15 +17,15 @@ export function Journal() {
           <div>
             <div className="section-kicker">
               <span className="h-px w-8 bg-primary" />
-              Journal
+              {kicker}
             </div>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight md:text-5xl">
-              Field notes &amp;{" "}
-              <span className="gradient-text">occasional essays.</span>
+              {headline}&amp;{" "}
+              <span className="gradient-text">{headlineAccent}</span>
             </h2>
           </div>
           <a href="#journal" className="btn-outline !px-5 !py-2.5 !text-sm">
-            View all articles
+            {viewAllLabel}
             <ArrowUpRight size={16} />
           </a>
         </div>
@@ -147,24 +110,22 @@ export function Journal() {
           <div className="mx-auto max-w-2xl">
             <BookOpen className="mx-auto mb-4 h-10 w-10 text-white/80" />
             <h3 className="mb-3 text-2xl font-extrabold text-white md:text-3xl">
-              Join 1,00,000+ educators
+              {newsletter.title}
             </h3>
             <p className="mb-6 text-base text-white/80">
-              Get the latest tips on AI in education, Microsoft tools, and
-              teacher productivity — delivered straight to your inbox. No
-              spam, ever.
+              {newsletter.description}
             </p>
             <form className="flex flex-col gap-3 sm:flex-row sm:justify-center">
               <input
                 type="email"
-                placeholder="you@school.edu.in"
+                placeholder={newsletter.placeholder}
                 className="w-full max-w-md rounded-xl border-0 px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-4 focus:ring-white/30 sm:w-auto"
               />
               <button
                 type="button"
                 className="rounded-xl bg-white px-6 py-3 font-bold text-blue-600 transition-all hover:bg-white/90 hover:shadow-lg"
               >
-                Subscribe
+                {newsletter.buttonLabel}
               </button>
             </form>
           </div>

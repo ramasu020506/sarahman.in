@@ -1,49 +1,7 @@
 import { Briefcase, GraduationCap, Award } from "lucide-react"
+import { siteData } from "@/lib/site-data"
 
-const ENTRIES = [
-  {
-    period: "2008 — Present",
-    role: "Principal · Microsoft Education Specialist · Educator Trainer",
-    org: "Pragati Educational Institutions",
-    location: "Rajamahendravaram, AP",
-    summary:
-      "Direct academic and administrative operations across branches serving 10,000+ students and 500+ educators. Lead the institution's adoption of Microsoft 365 Education, AI tools, and digital pedagogy.",
-    highlights: [
-      "Trained 500+ educators on Microsoft Teams, OneNote, Forms, Assignments, Excel & PowerPoint",
-      "Delivered 50+ professional development programs on digital pedagogy and AI literacy",
-      "Led institution-wide rollout of blended, hybrid, and remote learning",
-      "Built teacher workflows around ChatGPT, NotebookLM, and Microsoft Copilot",
-    ],
-  },
-  {
-    period: "1997 — 2008",
-    role: "Educator & Department Head",
-    org: "Pragati Educational Institutions",
-    location: "Rajamahendravaram, AP",
-    summary:
-      "Began as a mathematics and physics teacher, progressing to department head. Built the foundational classroom practice that informs all consulting work today.",
-    highlights: [
-      "Taught mathematics and physics across secondary and senior secondary",
-      "Mentored junior teachers in instructional design",
-      "Designed early digital assessment pilots",
-    ],
-  },
-]
-
-const EDUCATION = [
-  { year: "2007", title: "Bachelor of Education (B.Ed.)", org: "Mathematics & Physics" },
-  { year: "1997", title: "Bachelor of Science (B.Sc.)", org: "Mathematics, Physics & Chemistry" },
-]
-
-const CERTIFICATIONS = [
-  "Microsoft Innovative Educator (MIE)",
-  "Microsoft Hybrid Learning Certification",
-  "Microsoft Remote Learning Certification",
-  "Microsoft Blended Learning Certification",
-  "AI Accelerator Program (Be10X)",
-  "Excel Essentials for the Real World (Leila Gharani)",
-  "Excel Functions in Microsoft 365 (Leila Gharani)",
-]
+const { kicker, headline, headlineAccent, entries: ENTRIES, education: EDUCATION, certifications: CERTIFICATIONS } = siteData.experience
 
 export function Experience() {
   return (
@@ -56,11 +14,11 @@ export function Experience() {
         <div className="mb-12 text-center">
           <div className="section-kicker justify-center">
             <span className="h-px w-8 bg-primary" />
-            Curriculum Vitae
+            {kicker}
           </div>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight md:text-5xl">
-            Twenty-five years,{" "}
-            <span className="gradient-text">still learning.</span>
+            {headline}
+            <span className="gradient-text">{headlineAccent}</span>
           </h2>
         </div>
 

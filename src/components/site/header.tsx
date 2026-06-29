@@ -4,16 +4,9 @@ import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "./theme-toggle"
+import { siteData } from "@/lib/site-data"
 
-const NAV_ITEMS = [
-  { label: "About", href: "#about" },
-  { label: "Book", href: "#book" },
-  { label: "Expertise", href: "#expertise" },
-  { label: "Offerings", href: "#offerings" },
-  { label: "Experience", href: "#experience" },
-  { label: "Journal", href: "#journal" },
-  { label: "Contact", href: "#contact" },
-]
+const NAV_ITEMS = siteData.nav
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
@@ -44,13 +37,13 @@ export function SiteHeader() {
         <a
           href="#top"
           className="flex items-center gap-2"
-          aria-label="Syed Abdul Rahman — home"
+          aria-label={siteData.site.logoAlt}
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground font-extrabold text-sm">
-            SAR
+            {siteData.site.initials}
           </span>
           <span className="hidden font-extrabold tracking-tight text-foreground sm:inline">
-            sarahman.in
+            {siteData.site.domain}
           </span>
         </a>
 

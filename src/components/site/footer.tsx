@@ -1,23 +1,8 @@
 import { Linkedin, BookOpen, ArrowUp } from "lucide-react"
+import { siteData } from "@/lib/site-data"
 
-const NAV = [
-  { label: "About", href: "#about" },
-  { label: "Book", href: "#book" },
-  { label: "Expertise", href: "#expertise" },
-  { label: "Offerings", href: "#offerings" },
-  { label: "Experience", href: "#experience" },
-  { label: "Journal", href: "#journal" },
-  { label: "Contact", href: "#contact" },
-]
-
-const TOPICS = [
-  "AI in Education",
-  "Microsoft 365",
-  "ChatGPT for Teachers",
-  "NotebookLM",
-  "Teacher Burnout",
-  "Hybrid Learning",
-]
+const NAV = siteData.nav
+const { description, copyright, topics: TOPICS, backToTopLabel } = siteData.footer
 
 export function SiteFooter() {
   return (
@@ -28,24 +13,21 @@ export function SiteFooter() {
           <div className="col-span-2">
             <a href="#top" className="flex items-center gap-2">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground text-sm font-extrabold">
-                SAR
+                {siteData.site.initials}
               </span>
               <span className="font-extrabold tracking-tight text-foreground">
-                sarahman.in
+                {siteData.site.domain}
               </span>
             </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              AI in Education Consultant, Microsoft Education Specialist,
-              and Principal at Pragati Educational Institutions. Working
-              with schools, teachers, and leadership teams across India
-              since 2008.
+              {description}
             </p>
             <div className="mt-6 flex items-center gap-2 text-xs font-medium text-muted-foreground">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
               </span>
-              Available for trainings &amp; keynotes
+              {siteData.site.availability}
             </div>
           </div>
 
@@ -141,14 +123,13 @@ export function SiteFooter() {
         {/* Bottom strip */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Syed Abdul Rahman · sarahman.in ·
-            Rajamahendravaram, India
+            {copyright.replace("{year}", new Date().getFullYear().toString())}
           </p>
           <a
             href="#top"
             className="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2 text-xs font-bold text-foreground transition-all hover:border-primary hover:text-primary"
           >
-            Back to top
+            {backToTopLabel}
             <ArrowUp size={12} />
           </a>
         </div>

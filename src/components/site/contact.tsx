@@ -2,53 +2,12 @@
 
 import { useState } from "react"
 import { Mail, Phone, MapPin, Clock, Check, Linkedin, BookOpen, ArrowRight } from "lucide-react"
+import { siteData } from "@/lib/site-data"
 
-const CONTACT_INFO = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "rahman.rjy@outlook.com",
-    href: "mailto:rahman.rjy@outlook.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+91 98666 63777",
-    href: "tel:+919866663777",
-  },
-  {
-    icon: MapPin,
-    label: "Based in",
-    value: "Rajamahendravaram, AP",
-    href: null,
-  },
-  {
-    icon: Clock,
-    label: "Availability",
-    value: "2026 — open for trainings",
-    href: null,
-  },
-]
+const ICON_MAP = { Mail, Phone, MapPin, Clock, Linkedin, BookOpen } as const
 
-const LINKS = [
-  { label: "LinkedIn", handle: "/in/ramasu777", href: "https://www.linkedin.com/in/ramasu777/", icon: Linkedin },
-  { label: "Amazon Author", handle: "The Exhausted Educator", href: "https://amzn.in/d/0cikUR9A", icon: BookOpen },
-]
-
-const SERVICES = [
-  "AI in Education Workshop",
-  "School Digital Transformation",
-  "Leadership Advisory Retainer",
-  "Keynote / speaking",
-  "Something else",
-]
-const AUDIENCES = [
-  "A single school",
-  "A school group / trust",
-  "A conference or event",
-  "An edtech company",
-  "Other",
-]
+const { info: CONTACT_INFO, links: LINKS, services: SERVICES, audiences: AUDIENCES } = siteData.contact
+const { kicker, headline, headlineAccent, subtext } = siteData.contact
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false)
@@ -84,16 +43,14 @@ export function Contact() {
         <div className="mb-12 text-center">
           <div className="section-kicker justify-center">
             <span className="h-px w-8 bg-primary" />
-            Get In Touch
+            {kicker}
           </div>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight md:text-5xl">
-            Ready to upskill{" "}
-            <span className="gradient-text">your team?</span>
+            {headline}
+            <span className="gradient-text">{headlineAccent}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Whether you are looking to master AI tools or streamline your
-            school&apos;s workflows with Microsoft 365, I help educators and
-            teams upskill effectively.
+            {subtext}
           </p>
         </div>
 
@@ -103,28 +60,31 @@ export function Contact() {
             <div className="card-base h-full">
               <h3 className="mb-6 text-xl font-bold">Contact details</h3>
               <div className="space-y-5">
-                {CONTACT_INFO.map((c) => (
-                  <div key={c.label} className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <c.icon size={18} />
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                        {c.label}
+                {CONTACT_INFO.map((c) => {
+                  const IconComponent = ICON_MAP[c.icon as keyof typeof ICON_MAP]
+                  return (
+                    <div key={c.label} className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <IconComponent size={18} />
                       </div>
-                      {c.href ? (
-                        <a
-                          href={c.href}
-                          className="font-bold text-foreground transition-colors hover:text-primary"
-                        >
-                          {c.value}
-                        </a>
-                      ) : (
-                        <div className="font-bold text-foreground">{c.value}</div>
-                      )}
+                      <div>
+                        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                          {c.label}
+                        </div>
+                        {c.href ? (
+                          <a
+                            href={c.href}
+                            className="font-bold text-foreground transition-colors hover:text-primary"
+                          >
+                            {c.value}
+                          </a>
+                        ) : (
+                          <div className="font-bold text-foreground">{c.value}</div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
 
               <div className="my-6 h-px w-full bg-border" />
@@ -133,28 +93,31 @@ export function Contact() {
                 Elsewhere
               </div>
               <div className="mt-3 space-y-2">
-                {LINKS.map((l) => (
-                  <a
-                    key={l.label}
-                    href={l.href}
-                    target={l.href.startsWith("http") ? "_blank" : undefined}
-                    rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="group flex items-center gap-3 rounded-xl border border-border p-3 transition-all hover:border-primary hover:shadow-md"
-                  >
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <l.icon size={16} />
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                        {l.label}
+                {LINKS.map((l) => {
+                  const IconComponent = ICON_MAP[l.icon as keyof typeof ICON_MAP]
+                  return (
+                    <a
+                      key={l.label}
+                      href={l.href}
+                      target={l.href.startsWith("http") ? "_blank" : undefined}
+                      rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="group flex items-center gap-3 rounded-xl border border-border p-3 transition-all hover:border-primary hover:shadow-md"
+                    >
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <IconComponent size={16} />
                       </div>
-                      <div className="text-sm font-bold text-foreground">
-                        {l.handle}
+                      <div className="flex-1">
+                        <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                          {l.label}
+                        </div>
+                        <div className="text-sm font-bold text-foreground">
+                          {l.handle}
+                        </div>
                       </div>
-                    </div>
-                    <ArrowRight size={14} className="text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
-                  </a>
-                ))}
+                      <ArrowRight size={14} className="text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                    </a>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -317,7 +280,7 @@ function SelectField({
   label: string
   value: string
   onChange: (v: string) => void
-  options: string[]
+  options: readonly string[]
 }) {
   return (
     <label className="block">
